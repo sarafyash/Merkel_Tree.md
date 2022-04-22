@@ -32,13 +32,24 @@ Merkle trees are used because, we want to limit the amount of data being sent ov
 
 
 ## Algorithm 
+
 1.	Computer A sends a hash of the file to computer B.
 2.	Computer B checks that hash against the root of the Merkle tree.
 3.	If there is no difference, we're done! Otherwise, go to step 4.
 4.	If there is a difference in a single hash, computer B will request the roots of the two subtrees of that hash.
 5.	Computer A creates the necessary hashes and sends them back to computer B.
 6.	Repeat steps 4 and 5 until you've found the data blocks(s) that are inconsistent. It's possible to find more than one data block that is wrong because there might be more than one error in the data.
-Benefits of Merkle Tree in 
+
+## Benefits of Merkle Tree in Blockchain 
+
+Merkle trees provide four significant advantages - 
+  1. Validate the data's integrity: It can be used to validate the data's integrity effectively.
+  2. Takes little disk space: Compared to other data structures, the Merkle tree takes up very little disk space.
+  3. Tiny information across networks: Merkle trees can be broken down into small pieces of data for verification.
+  4. Efficient Verification: The data format is efficient, and verifying the data's integrity takes only a few moments.
+
+
+
 
 
 
