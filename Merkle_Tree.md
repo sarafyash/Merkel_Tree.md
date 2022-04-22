@@ -20,6 +20,7 @@ Merkle trees are created by repeatedly calculating hashing pairs of nodes until 
 
 Every leaf node is a hash of transactional data, and the non-leaf node is a hash of its previous hashes. Merkle trees are in a binary tree, so it requires an even number of leaf nodes. If there is an odd number of transactions, the last hash will be duplicated once to create an even number of leaf nodes.
 
+
 ![Merkle Tree](https://static.javatpoint.com/tutorial/blockchain/images/blockchain-merkle-tree.png)
 
 The above example is the most common and simple form of a Merkle tree, i.e., **Binary Merkle Tree**. There are four transactions in a block: **TX1, TX2, TX3, and TX4**. Here you can see, there is a top hash which is the hash of the entire tree, known as the Root Hash, or the Merkle Root. Each of these is repeatedly hashed, and stored in each leaf node, resulting in Hash 0, 1, 2, and 3. Consecutive pairs of leaf nodes are then summarized in a parent node by hashing Hash0 and Hash1, resulting in Hash01, and separately hashing Hash2 and Hash3, resulting in Hash23. The two hashes (Hash01 and Hash23) are then hashed again to produce the Root Hash or the Merkle Root.
@@ -49,7 +50,7 @@ Merkle trees provide four significant advantages -
   4. Efficient Verification: The data format is efficient, and verifying the data's integrity takes only a few moments.
 
 
-
+## Code
 
 ```Java
 import java.math.BigInteger;
