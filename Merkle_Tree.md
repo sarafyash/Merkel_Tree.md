@@ -100,7 +100,6 @@ public class MerkleTree {
         ArrayList<String> merkleRoot = merkleTree(txnLists);
         return merkleRoot.get(0);
     }
-
     private ArrayList<String> merkleTree(ArrayList<String> hashList){
         //Return the Merkle Root
         if(hashList.size() == 1){
@@ -124,7 +123,6 @@ public class MerkleTree {
     public static String getSHA(String input)
     {
         try {
-
             // Static getInstance method is called with hashing SHA
             MessageDigest md = MessageDigest.getInstance("SHA-256");
 
@@ -142,7 +140,6 @@ public class MerkleTree {
             while (hashtext.length() < 32) {
                 hashtext = "0" + hashtext;
             }
-
             return hashtext;
         }
 
@@ -150,11 +147,9 @@ public class MerkleTree {
         catch (NoSuchAlgorithmException e) {
             System.out.println("Exception thrown"
                     + " for incorrect algorithm: " + e);
-
             return null;
         }
     }
-
 }
 ```
 
