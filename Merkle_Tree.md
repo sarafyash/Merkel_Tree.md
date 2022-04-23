@@ -31,7 +31,43 @@ Merkle trees are used because, we want to limit the amount of data being sent ov
 
 ![Breaking Data int bits of information](https://www.simplilearn.com/ice9/free_resources_article_thumb/Merkle_Tree_In_Blockchain_5.png)
 
+## Verification
 
+The importance of Merkel Trees is its ability to verify data with efficiency. Given any data from the list we can verify in O(h) time complexity that this data is valid or not. Moreover, we do not need the entire list for verification.
+
+Suppose I received a data C from another server. Lets say this is C’. We want to verify C’ is not tampered. We have in out possession a merkel tree of all the data in the list.
+In Merkel Tree we only need the hashes. Following diagram illustrates how we can verify, C’ without other data objects available with us.
+
+![Verification of Merkle tree ](https://miro.medium.com/max/1256/1*HwZtuEwJVDvEJio4OOCKpw.jpeg)
+
+ 1. Find the position of the C’ in the list. Probably by searching by id.
+ 2. Calculate the the hash of C’
+ 3. Calculate the value of the parent node by hashing the current node with its neighbor ( next if position is odd and previous if position in even) and set the parent     as the current node.
+ 4. Repeat step 3 until we find the root
+ 5. Compare the root with the previous root, if they match then C’
+
+Compare the new root with the existing root. If the new root matches then the C’ is essentially C and not tampered.
+To verify a data in hash chain we need O(n) time since we would calculate n hashes in the worst case where as in case of Merkel Tree the same data can be verified in O(logn) time since we only calculate logn hashes.
+
+## Mathematical Representation
+
+  ### Creation 
+  
+  As already mentioned before, Merkel Tree are created by taking two nodes from each layer and hashing them to create the parent node. by representing the tree in       matrix form we can mathematically write it as:
+  
+  
+ ![Verification of Merkle tree ](https://miro.medium.com/max/1400/1*EA7FYersQE_oS6SLBuxlNQ.jpeg)
+  
+  This makes the root of the tree available at tree[0][0]
+  
+  ### Verification
+  Verification is a bottom-up approach where we start from the data, find its hash and calculate the parent and continue this until we find the root. Mathematically,     we can express it as follows:
+  
+  ![Verification of Merkle tree ](https://miro.medium.com/max/1400/1*gGD-kH3a1_CoYeHyYLeodA.jpeg)
+  
+  
+  
+  
 ## Algorithm 
 
 1.	Computer A sends a hash of the file to computer B.
@@ -137,3 +173,5 @@ https://github.com/quux00/merkle-tree
 https://medium.com/@vinayprabhu19/merkel-tree-in-java-b45093c8c6bd
 
 https://rosettacode.org/wiki/SHA-256_Merkle_tree
+
+https://medium.com/coinmonks/implementing-merkle-tree-and-patricia-trie-b8badd6d9591#:~:text=To%20simply%20put%2C%20Merkel%20Trees,the%20two%20nodes%20below%20it.
