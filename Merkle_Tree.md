@@ -1,4 +1,4 @@
-# Merkle Tee
+# Merkle Tree
 
 ## Introduction to Merkle Tree
 
