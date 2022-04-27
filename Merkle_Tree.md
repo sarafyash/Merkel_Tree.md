@@ -1,42 +1,39 @@
 # Merkle Tree
 
 ## Introduction to Merkle Tree
+The Merkle tree, also known as the hash tree, is a data structure that is used for data verification and synchronisation.
+It's a tree data structure in which each non-leaf node is a hash of its children. All of the leaf nodes are the same depth and as far to the left as possible.
+It maintains data integrity by employing hash functions.
 
-Merkle tree also known as hash tree is a data structure used for data verification and synchronization. 
-It is a tree data structure where each non-leaf node is a hash of it’s child nodes. All the leaf nodes are at the same depth and are as far left as possible. 
-It maintains data integrity and uses hash functions for this purpose. 
+A hash tree, also known as a Merkle tree, is a tree in which each leaf node bears the cryptographic hash of a data block and each non-leaf node bears the cryptographic hash of the labels of its child nodes.
+The Merkle tree is a key component of blockchain technology. It is a mathematical **data structure** made up of hashes of various blocks of data that serves as a summary of all transactions in a block. It also enables efficient and secure content verification across large datasets. It also aids in the validation of the data's consistency and content. Merkle Trees are used by Bitcoin and Ethereum. ***Hash Tree*** is another name for Merkle Tree.
 
-A hash tree, also known as a Merkle tree, is a tree in which each leaf node is labelled with the cryptographic hash of a data block, and each non-leaf node is labelled with the cryptographic hash of its child nodes' labels.
-Merkle tree is a fundamental part of blockchain technology. It is a mathematical **data structure** composed of hashes of different blocks of data, and which serves as a summary of all the transactions in a block. It also allows for efficient and secure verification of content in a large body of data. It also helps to verify the consistency and content of the data. Both Bitcoin and Ethereum use Merkle Trees structure. Merkle Tree is also known as ***Hash Tree***.
-
-The concept of Merkle Tree is named after **Ralph Merkle**, who patented the idea in **1979**. Fundamentally, it is a data structure tree in which every leaf node labelled with the hash of a data block, and the non-leaf node labelled with the cryptographic hash of the labels of its child nodes. The leaf nodes are the lowest node in the tree.
+Merkle Tree is named after **Ralph Merkle**, who patented the concept in **1979**. It is fundamentally a data structure tree in which each leaf node is labelled with the hash of a data block and the non-leaf node is labelled with the cryptographic hash of the labels of its child nodes. The leaf nodes are the tree's lowest nodes.
 
 
 ## Architecture of Merkle Tree
 
-A Merkle tree stores all the transactions in a block by producing a digital fingerprint of the entire set of transactions. It allows the user to verify whether a transaction can be included in a block or not.
+A Merkle tree records all transactions in a block by creating a digital fingerprint of the entire set of transactions. It enables the user to determine whether or not a transaction can be included in a block.
 
-Merkle trees are created by repeatedly calculating hashing pairs of nodes until there is only one hash left. This hash is called the Merkle Root, or the Root Hash. The Merkle Trees are constructed in a bottom-up approach.
+Merkle trees are formed by repeatedly hashing pairs of nodes until only one hash remains. This hash is known as the Merkle Root or Root Hash.The Merkle Trees are constructed in a bottom-up approach.
 
-Every leaf node is a hash of transactional data, and the non-leaf node is a hash of its previous hashes. Merkle trees are in a binary tree, so it requires an even number of leaf nodes. If there is an odd number of transactions, the last hash will be duplicated once to create an even number of leaf nodes.
-
+Each leaf node is a hash of transactional data, while the non-leaf node is a hash of its previous hashes. Merkle trees are binary trees, so they must have an even number of leaf nodes. If the number of transactions is odd, the last hash will be duplicated once to create an even number of leaf nodes.
 
 ![Merkle Tree](https://static.javatpoint.com/tutorial/blockchain/images/blockchain-merkle-tree.png)
 
-The above example is the most common and simple form of a Merkle tree, i.e., **Binary Merkle Tree**. There are four transactions in a block: **TX1, TX2, TX3, and TX4**. Here you can see, there is a top hash which is the hash of the entire tree, known as the Root Hash, or the Merkle Root. Each of these is repeatedly hashed, and stored in each leaf node, resulting in Hash 0, 1, 2, and 3. Consecutive pairs of leaf nodes are then summarized in a parent node by hashing Hash0 and Hash1, resulting in Hash01, and separately hashing Hash2 and Hash3, resulting in Hash23. The two hashes (Hash01 and Hash23) are then hashed again to produce the Root Hash or the Merkle Root.
-
+The example above is the most common and basic type of Merkle tree, known as a **Binary Merkle Tree**. A block contains four transactions: **TX1**, **TX2**, **TX3**, and **TX4**. There is a top hash that is the hash of the entire tree, known as the Root Hash or the Merkle Root. Each of these is hashed repeatedly and stored in each leaf node, yielding Hash 0, 1, 2, and 3. Hashing Hash0 and Hash1, resulting in Hash01, and separately hashing Hash2 and Hash3, resulting in Hash23, are then used to summarise consecutive pairs of leaf nodes in a parent node. The two hashes (Hash01 and Hash23) are then hashed once more to produce the Root Hash or Merkle Root.
 Merkle Root is stored in the **block header**. The block header is the part of the bitcoin block which gets hash in the process of mining. It contains the hash of the last block, a Nonce, and the Root Hash of all the transactions in the current block in a Merkle Tree. So having the Merkle root in block header makes the transaction tamper-proof. As this Root Hash includes the hashes of all the transactions within the block, these transactions may result in saving the disk space.
 
-Merkle trees are used because, we want to limit the amount of data being sent over a network (like the Internet) as much as possible. So, instead of sending an entire file over the network, we just send a hash of the file to see if it matches.
+Merkle trees are used because we want to send as little data as possible over a network (such as the Internet). So, rather than sending the entire file over the network, we simply send a hash of the file to see if it matches.
 
 ![Breaking Data int bits of information](https://www.simplilearn.com/ice9/free_resources_article_thumb/Merkle_Tree_In_Blockchain_5.png)
 
 ## Verification
 
-The importance of Merkel Trees is its ability to verify data with efficiency. Given any data from the list we can verify in O(h) time complexity that this data is valid or not. Moreover, we do not need the entire list for verification.
+Merkle Trees are important because of their ability to efficiently verify data. Given any data from the list, we can determine whether it is valid or not in O(h) time. Furthermore, we do not require the entire list for verification.
 
-Suppose I received a data C from another server. Lets say this is C’. We want to verify C’ is not tampered. We have in out possession a merkel tree of all the data in the list.
-In Merkel Tree we only need the hashes. Following diagram illustrates how we can verify, C’ without other data objects available with us.
+Assume I received data C from a different server. Let's call this C'. We want to make sure C' hasn't been tampered with. We have a merkel tree containing all of the data in the list.
+We only need the hashes in Merkel Tree. The diagram below shows how we can verify, C' in the absence of other data objects.
 
 ![Verification of Merkle tree ](https://miro.medium.com/max/1256/1*HwZtuEwJVDvEJio4OOCKpw.jpeg)
 
@@ -45,9 +42,8 @@ In Merkel Tree we only need the hashes. Following diagram illustrates how we can
  3. Calculate the value of the parent node by hashing the current node with its neighbor ( next if position is odd and previous if position in even) and set the parent     as the current node.
  4. Repeat step 3 until we find the root
  5. Compare the root with the previous root, if they match then C’
-
-Compare the new root with the existing root. If the new root matches then the C’ is essentially C and not tampered.
-To verify a data in hash chain we need O(n) time since we would calculate n hashes in the worst case where as in case of Merkel Tree the same data can be verified in O(logn) time since we only calculate logn hashes.
+Contrast the new root with the old root. If the new root matches, the C' is still C and has not been tampered with.
+In the case of a hash chain, it takes O(n) time to verify a data because we calculate n hashes in the worst case, whereas in the case of a Merkel Tree, the same data can be verified in O(logn) time because we only calculate logn hashes.
 
 ## Mathematical Representation
 
